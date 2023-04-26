@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+}
+
+group 'me.vlod'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	from javadoc.destinationDir
+	classifier = 'javadoc'
+    group = 'build'
+    description = 'Assembles a jar archive containing the javadocs'
+}
+
+artifacts {
+    archives javadocJar
+}
+
+java {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+    withSourcesJar()
+}
